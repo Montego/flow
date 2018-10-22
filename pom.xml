@@ -76,6 +76,9 @@
 			<version>1.18.2</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+
+
 	</dependencies>
 
 	<build>
