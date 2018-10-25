@@ -93,11 +93,7 @@ Vue.component('notes-list', {
     '<note-row v-for="note in notes" :key="note.id" :note="note" :editMethod="editMethod" :notes="notes"/>' +
 
     '</div>',
-    created: function () {
-        noteApi.get().then(result =>result.json().then(data => data.forEach(note=> this.notes.push(note))
-            )
-        )
-    },methods: {
+    methods: {
         editMethod: function (note) {
             this.note=note;
         }
@@ -107,8 +103,22 @@ Vue.component('notes-list', {
 
 var app = new Vue({
     el: '#app',
-    template:'<notes-list :notes="notes"/>' ,
+    template:
+    '<div>'+
+        '<div v-if="!profile">Необходимо авторизоваться через <a href="/login">Google</a> </div>'+
+        '<div v-else>'+
+            '<div>{{profile.name}}&nbsp;<a href="/logout">Выход</a></div>'+
+            '<notes-list :notes="notes"/>'+
+        '</div>'+
+    '</div>',
+
     data: {
-        notes: []
+        notes: frontendData.notes,
+        profile: frontendData.profile
+    },
+    created: function () {
+        // noteApi.get().then(result =>result.json().then(data => data.forEach(note=> this.notes.push(note))
+        //     )
+        // )
     }
 });
