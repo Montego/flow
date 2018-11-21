@@ -9,8 +9,6 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity
@@ -31,6 +29,8 @@ public class Note {
     @Length(max = 255, message = "Tag too long")
     @JsonView(Views.IdTextTag.class)
     private String tag;
+
+
     @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullMessage.class)
